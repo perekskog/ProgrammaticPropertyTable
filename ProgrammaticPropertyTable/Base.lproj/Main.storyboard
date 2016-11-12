@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="4zQ-RI-gOW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="xFa-xc-jae">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--WorkItemVC-->
+        <!--TaskEntryPropVC-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" userLabel="WorkItemVC" customClass="WorkItemVC" customModule="TestStaticDynamicTable" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" userLabel="TaskEntryPropVC" customClass="TaskEntryPropVC" customModule="ProgrammaticPropertyTable" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -19,17 +19,20 @@
                     </view>
                     <navigationItem key="navigationItem" id="LYc-tj-gUB"/>
                     <connections>
-                        <segue destination="b4U-s6-07k" kind="push" identifier="SelectItem" id="dd7-ts-Ku9"/>
+                        <segue destination="b4U-s6-07k" kind="push" identifier="SelectTask" id="dd7-ts-Ku9"/>
+                        <segue destination="DAU-TP-CS3" kind="unwind" identifier="SaveTaskEntry" unwindAction="exitTaskEntry:" id="E9j-YL-fbN"/>
+                        <segue destination="DAU-TP-CS3" kind="unwind" identifier="CancelTaskEntry" unwindAction="exitTaskEntry:" id="PoT-EZ-zly"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <exit id="DAU-TP-CS3" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="931" y="149"/>
+            <point key="canvasLocation" x="5463" y="1509"/>
         </scene>
-        <!--SelectFromListVC-->
+        <!--TaskSelectVC-->
         <scene sceneID="265-YO-mT9">
             <objects>
-                <viewController id="b4U-s6-07k" userLabel="SelectFromListVC" customClass="SelectFromListVC" customModule="TestStaticDynamicTable" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="b4U-s6-07k" userLabel="TaskSelectVC" customClass="TaskSelectVC" customModule="ProgrammaticPropertyTable" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="G33-Tv-XeG"/>
                         <viewControllerLayoutGuide type="bottom" id="RYD-sW-f1B"/>
@@ -41,18 +44,80 @@
                     </view>
                     <navigationItem key="navigationItem" id="vy1-pd-apw"/>
                     <connections>
-                        <segue destination="YAn-AO-eeV" kind="unwind" identifier="ExitSelectItem" unwindAction="exitSelectItem:" id="1DW-H2-KPs"/>
+                        <segue destination="YAn-AO-eeV" kind="unwind" identifier="DoneSelectTask" unwindAction="exitSelectTask:" id="1DW-H2-KPs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KlD-3S-0TA" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="YAn-AO-eeV" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1403" y="149"/>
+            <point key="canvasLocation" x="5839" y="1509"/>
         </scene>
-        <!--TaskItemVC-->
+        <!--MainVC-->
+        <scene sceneID="lhD-qN-WiF">
+            <objects>
+                <viewController id="bgD-RO-ehS" userLabel="MainVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NtO-0V-CPj"/>
+                        <viewControllerLayoutGuide type="bottom" id="Yas-3n-bXN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="a8M-fs-T3v">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S74-ba-BCH">
+                                <rect key="frame" x="137" y="185" width="31" height="30"/>
+                                <state key="normal" title="Task">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="ttA-ai-awg" kind="push" id="Cco-CQ-p41"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="owX-Ed-dbr">
+                                <rect key="frame" x="129" y="276" width="55" height="30"/>
+                                <state key="normal" title="Session">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="v9O-y7-Otj" kind="push" id="9Cj-gW-IdM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="7lu-aQ-PDr"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p0q-sb-Kgv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3667" y="487"/>
+        </scene>
+        <!--TaskListVC-->
+        <scene sceneID="U6A-dv-qrb">
+            <objects>
+                <viewController id="ttA-ai-awg" userLabel="TaskListVC" customClass="TaskListVC" customModule="ProgrammaticPropertyTable" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="cvl-1M-pAp"/>
+                        <viewControllerLayoutGuide type="bottom" id="T3o-5h-nOn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1TL-37-thO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="x4e-xE-FoD"/>
+                    <connections>
+                        <segue destination="PiI-b4-f6t" kind="modal" identifier="AddTask" id="Cu8-tV-Nqq"/>
+                        <segue destination="PiI-b4-f6t" kind="modal" identifier="EditTask" id="p10-3a-nPG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tMn-40-SQp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4123" y="149"/>
+        </scene>
+        <!--TaskPropVC-->
         <scene sceneID="1S5-2b-Kpu">
             <objects>
-                <viewController id="4zQ-RI-gOW" userLabel="TaskItemVC" customClass="TaskItemVC" customModule="TestStaticDynamicTable" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="4zQ-RI-gOW" userLabel="TaskPropVC" customClass="TaskPropVC" customModule="ProgrammaticPropertyTable" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hjp-KK-tG6"/>
                         <viewControllerLayoutGuide type="bottom" id="xpc-IW-1X4"/>
@@ -62,15 +127,38 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="qrw-qm-TyU"/>
+                    <connections>
+                        <segue destination="6n3-kt-vFp" kind="push" identifier="SelectTaskType" id="idB-h6-keC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5F6-oQ-1Vx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1403" y="803"/>
+            <point key="canvasLocation" x="5095" y="149"/>
         </scene>
-        <!--EditListVC-->
+        <!--TaskTypeSelectVC-->
+        <scene sceneID="vyU-Up-0rk">
+            <objects>
+                <viewController id="6n3-kt-vFp" userLabel="TaskTypeSelectVC" customClass="TaskTypeSelectVC" customModule="ProgrammaticPropertyTable" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Fnn-Cn-s5V"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ua6-Ey-71s"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OQD-m9-HAT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Zjt-OO-qH4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mUr-SA-xdK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5547" y="149"/>
+        </scene>
+        <!--TaskEntryListVC-->
         <scene sceneID="mZL-W7-VBP">
             <objects>
-                <viewController id="EUb-98-w2b" userLabel="EditListVC" customClass="EditListVC" customModule="TestStaticDynamicTable" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="EUb-98-w2b" userLabel="TaskEntryListVC" customClass="TaskEntryListVC" customModule="ProgrammaticPropertyTable" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="URv-PL-azZ"/>
                         <viewControllerLayoutGuide type="bottom" id="6yq-bv-7vw"/>
@@ -80,32 +168,139 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="caR-xY-bWu"/>
                     <connections>
                         <segue destination="CUl-1q-glu" kind="unwind" identifier="ExitEditList" unwindAction="exitEditList:" id="tJ5-n6-11A"/>
+                        <segue destination="8w4-7h-z0h" kind="modal" identifier="AddTaskEntry" id="eiP-fo-C4y"/>
+                        <segue destination="8w4-7h-z0h" kind="modal" identifier="EditTaskEntry" id="hM3-C9-BMD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MSp-8V-avB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="CUl-1q-glu" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="931" y="803"/>
+            <point key="canvasLocation" x="5095" y="803"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="1RL-hi-l9f">
+        <scene sceneID="jQr-YZ-JBu">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="i8B-aY-uTq" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xFa-xc-jae" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4Bw-Fm-U5g">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="1F5-mo-sTW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="zbm-DL-xIZ"/>
+                        <segue destination="bgD-RO-ehS" kind="relationship" relationship="rootViewController" id="0u8-ee-fWe"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aUd-8Y-Sc4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GRe-Op-bjD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="399" y="297"/>
+            <point key="canvasLocation" x="3135" y="487"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Xf6-Ns-Fwp">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8w4-7h-z0h" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="rMC-4T-TU5"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nDg-6K-zcL">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="VbR-ua-vKe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hz3-PW-BDw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5095" y="1509"/>
+        </scene>
+        <!--SessionList-->
+        <scene sceneID="fZQ-q1-vbl">
+            <objects>
+                <viewController id="v9O-y7-Otj" userLabel="SessionList" customClass="SessionListVC" customModule="ProgrammaticPropertyTable" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="C8l-bh-rja"/>
+                        <viewControllerLayoutGuide type="bottom" id="yga-Mn-1ab"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wTl-s6-hcn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Dol-Gf-HEU"/>
+                    <connections>
+                        <segue destination="jDQ-iS-trF" kind="modal" identifier="AddSession" id="aS0-Z0-gjm"/>
+                        <segue destination="jDQ-iS-trF" kind="modal" identifier="EditSession" id="PIN-IU-xZ3"/>
+                        <segue destination="EUb-98-w2b" kind="push" identifier="NavigateToTaskEntry" id="Xyt-XF-u9A"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bVa-Ub-nUZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4123" y="803"/>
+        </scene>
+        <!--SessionProp-->
+        <scene sceneID="ad3-F1-yxV">
+            <objects>
+                <viewController id="PLi-UO-29p" userLabel="SessionProp" customClass="SessionPropVC" customModule="ProgrammaticPropertyTable" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fGU-qF-nfZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="BTu-5l-qPt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aO4-mi-Dh4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="CO8-Y7-5nE"/>
+                    <connections>
+                        <segue destination="Um3-SJ-HNe" kind="unwind" identifier="CancelSessionProp" unwindAction="exitSessionProp:" id="G8U-Wa-9Pl"/>
+                        <segue destination="Um3-SJ-HNe" kind="unwind" identifier="SaveSessionProp" unwindAction="exitSessionProp:" id="rdW-SF-p0j"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oMV-yw-eJX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="Um3-SJ-HNe" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="4503" y="1509"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zQe-Kz-r8T">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PiI-b4-f6t" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="yOd-E9-ZgS"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zEk-oN-mxv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4zQ-RI-gOW" kind="relationship" relationship="rootViewController" id="1eY-yJ-2pc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rfG-U0-TJQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4563" y="149"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="D44-gd-VLy">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jDQ-iS-trF" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iX4-fB-jPt">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="PLi-UO-29p" kind="relationship" relationship="rootViewController" id="TvC-eC-yHQ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qCL-vu-Mhb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4123" y="1509"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
@@ -113,4 +308,9 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="aS0-Z0-gjm"/>
+        <segue reference="p10-3a-nPG"/>
+        <segue reference="eiP-fo-C4y"/>
+    </inferredMetricsTieBreakers>
 </document>

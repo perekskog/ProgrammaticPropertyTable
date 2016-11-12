@@ -7,16 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CB26F98C1B4B231D000AC922 /* TaskItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB26F98B1B4B231D000AC922 /* TaskItemVC.swift */; };
-		CB7C44BC1B4A504200B11F68 /* SelectFromListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7C44BB1B4A504200B11F68 /* SelectFromListVC.swift */; };
-		CB7C44BE1B4A706500B11F68 /* EditListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7C44BD1B4A706500B11F68 /* EditListVC.swift */; };
+		CB584E1C1B7B207D00071262 /* SessionListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB584E1A1B7B207D00071262 /* SessionListVC.swift */; };
+		CB584E1D1B7B207D00071262 /* SessionListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB584E1A1B7B207D00071262 /* SessionListVC.swift */; };
+		CB584E1E1B7B207D00071262 /* SessionProp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB584E1B1B7B207D00071262 /* SessionProp.swift */; };
+		CB584E1F1B7B207D00071262 /* SessionProp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB584E1B1B7B207D00071262 /* SessionProp.swift */; };
+		CB7238C91B61FC0600F6A6BD /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7238C81B61FC0600F6A6BD /* Model.swift */; };
+		CB7238CA1B61FC0600F6A6BD /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7238C81B61FC0600F6A6BD /* Model.swift */; };
+		CB7E0C1B1B7DC1FC00435D9E /* TaskEntryListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E0C1A1B7DC1FC00435D9E /* TaskEntryListVC.swift */; };
+		CB7E0C1C1B7DC1FC00435D9E /* TaskEntryListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E0C1A1B7DC1FC00435D9E /* TaskEntryListVC.swift */; };
+		CB7E0C1E1B7DC23900435D9E /* TaskEntryPropVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E0C1D1B7DC23900435D9E /* TaskEntryPropVC.swift */; };
+		CB7E0C1F1B7DC23900435D9E /* TaskEntryPropVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E0C1D1B7DC23900435D9E /* TaskEntryPropVC.swift */; };
+		CB7E0C241B7DC29600435D9E /* TaskListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E0C201B7DC29600435D9E /* TaskListVC.swift */; };
+		CB7E0C251B7DC29600435D9E /* TaskListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E0C201B7DC29600435D9E /* TaskListVC.swift */; };
+		CB7E0C261B7DC29600435D9E /* TaskPropVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E0C211B7DC29600435D9E /* TaskPropVC.swift */; };
+		CB7E0C271B7DC29600435D9E /* TaskPropVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E0C211B7DC29600435D9E /* TaskPropVC.swift */; };
+		CB7E0C281B7DC29600435D9E /* TaskSelectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E0C221B7DC29600435D9E /* TaskSelectVC.swift */; };
+		CB7E0C291B7DC29600435D9E /* TaskSelectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E0C221B7DC29600435D9E /* TaskSelectVC.swift */; };
+		CB7E0C2A1B7DC29600435D9E /* TaskTypeSelectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E0C231B7DC29600435D9E /* TaskTypeSelectVC.swift */; };
+		CB7E0C2B1B7DC29600435D9E /* TaskTypeSelectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E0C231B7DC29600435D9E /* TaskTypeSelectVC.swift */; };
 		CB7E741B1B490973001E985B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E741A1B490973001E985B /* AppDelegate.swift */; };
 		CB7E741E1B490973001E985B /* ProgrammaticPropertyTable.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB7E741C1B490973001E985B /* ProgrammaticPropertyTable.xcdatamodeld */; };
-		CB7E74201B490973001E985B /* WorkItemVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E741F1B490973001E985B /* WorkItemVC.swift */; };
 		CB7E74231B490973001E985B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB7E74211B490973001E985B /* Main.storyboard */; };
 		CB7E74251B490973001E985B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB7E74241B490973001E985B /* Images.xcassets */; };
 		CB7E74281B490973001E985B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB7E74261B490973001E985B /* LaunchScreen.xib */; };
 		CB7E74341B490974001E985B /* ProgrammaticPropertyTableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E74331B490974001E985B /* ProgrammaticPropertyTableTests.swift */; };
+		CBB0C50E1B66D3B300EC8A1E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB0C50D1B66D3B300EC8A1E /* Utilities.swift */; };
+		CBB0C50F1B66D3B300EC8A1E /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB0C50D1B66D3B300EC8A1E /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,20 +46,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		CB26F98B1B4B231D000AC922 /* TaskItemVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskItemVC.swift; sourceTree = "<group>"; };
-		CB7C44BB1B4A504200B11F68 /* SelectFromListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectFromListVC.swift; sourceTree = "<group>"; };
-		CB7C44BD1B4A706500B11F68 /* EditListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditListVC.swift; sourceTree = "<group>"; };
+		CB584E1A1B7B207D00071262 /* SessionListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionListVC.swift; sourceTree = "<group>"; };
+		CB584E1B1B7B207D00071262 /* SessionProp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionProp.swift; sourceTree = "<group>"; };
+		CB7238C81B61FC0600F6A6BD /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		CB7E0C1A1B7DC1FC00435D9E /* TaskEntryListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskEntryListVC.swift; sourceTree = "<group>"; };
+		CB7E0C1D1B7DC23900435D9E /* TaskEntryPropVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskEntryPropVC.swift; sourceTree = "<group>"; };
+		CB7E0C201B7DC29600435D9E /* TaskListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListVC.swift; sourceTree = "<group>"; };
+		CB7E0C211B7DC29600435D9E /* TaskPropVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskPropVC.swift; sourceTree = "<group>"; };
+		CB7E0C221B7DC29600435D9E /* TaskSelectVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskSelectVC.swift; sourceTree = "<group>"; };
+		CB7E0C231B7DC29600435D9E /* TaskTypeSelectVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskTypeSelectVC.swift; sourceTree = "<group>"; };
 		CB7E74151B490973001E985B /* ProgrammaticPropertyTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProgrammaticPropertyTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB7E74191B490973001E985B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB7E741A1B490973001E985B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB7E741D1B490973001E985B /* ProgrammaticPropertyTable.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ProgrammaticPropertyTable.xcdatamodel; sourceTree = "<group>"; };
-		CB7E741F1B490973001E985B /* WorkItemVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkItemVC.swift; sourceTree = "<group>"; };
 		CB7E74221B490973001E985B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CB7E74241B490973001E985B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CB7E74271B490973001E985B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		CB7E742D1B490974001E985B /* ProgrammaticPropertyTableTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProgrammaticPropertyTableTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB7E74321B490974001E985B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB7E74331B490974001E985B /* ProgrammaticPropertyTableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgrammaticPropertyTableTests.swift; sourceTree = "<group>"; };
+		CBB0C50D1B66D3B300EC8A1E /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,12 +107,18 @@
 		CB7E74171B490973001E985B /* ProgrammaticPropertyTable */ = {
 			isa = PBXGroup;
 			children = (
-				CB7E741A1B490973001E985B /* AppDelegate.swift */,
-				CB7E741F1B490973001E985B /* WorkItemVC.swift */,
+				CB584E1A1B7B207D00071262 /* SessionListVC.swift */,
+				CB584E1B1B7B207D00071262 /* SessionProp.swift */,
+				CB7E0C1A1B7DC1FC00435D9E /* TaskEntryListVC.swift */,
+				CB7E0C1D1B7DC23900435D9E /* TaskEntryPropVC.swift */,
+				CB7E0C221B7DC29600435D9E /* TaskSelectVC.swift */,
+				CB7E0C211B7DC29600435D9E /* TaskPropVC.swift */,
+				CB7E0C231B7DC29600435D9E /* TaskTypeSelectVC.swift */,
+				CB7E0C201B7DC29600435D9E /* TaskListVC.swift */,
+				CB7238C81B61FC0600F6A6BD /* Model.swift */,
 				CB7E74211B490973001E985B /* Main.storyboard */,
-				CB26F98B1B4B231D000AC922 /* TaskItemVC.swift */,
-				CB7C44BD1B4A706500B11F68 /* EditListVC.swift */,
-				CB7C44BB1B4A504200B11F68 /* SelectFromListVC.swift */,
+				CB7E741A1B490973001E985B /* AppDelegate.swift */,
+				CBB0C50D1B66D3B300EC8A1E /* Utilities.swift */,
 				CB7E74241B490973001E985B /* Images.xcassets */,
 				CB7E74261B490973001E985B /* LaunchScreen.xib */,
 				CB7E741C1B490973001E985B /* ProgrammaticPropertyTable.xcdatamodeld */,
@@ -224,12 +252,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB7E74201B490973001E985B /* WorkItemVC.swift in Sources */,
-				CB26F98C1B4B231D000AC922 /* TaskItemVC.swift in Sources */,
-				CB7C44BC1B4A504200B11F68 /* SelectFromListVC.swift in Sources */,
+				CB7E0C261B7DC29600435D9E /* TaskPropVC.swift in Sources */,
+				CB7238C91B61FC0600F6A6BD /* Model.swift in Sources */,
+				CB7E0C1E1B7DC23900435D9E /* TaskEntryPropVC.swift in Sources */,
+				CB7E0C2A1B7DC29600435D9E /* TaskTypeSelectVC.swift in Sources */,
+				CB7E0C281B7DC29600435D9E /* TaskSelectVC.swift in Sources */,
 				CB7E741E1B490973001E985B /* ProgrammaticPropertyTable.xcdatamodeld in Sources */,
+				CB584E1E1B7B207D00071262 /* SessionProp.swift in Sources */,
+				CB7E0C1B1B7DC1FC00435D9E /* TaskEntryListVC.swift in Sources */,
 				CB7E741B1B490973001E985B /* AppDelegate.swift in Sources */,
-				CB7C44BE1B4A706500B11F68 /* EditListVC.swift in Sources */,
+				CB584E1C1B7B207D00071262 /* SessionListVC.swift in Sources */,
+				CB7E0C241B7DC29600435D9E /* TaskListVC.swift in Sources */,
+				CBB0C50E1B66D3B300EC8A1E /* Utilities.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,7 +271,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB7E0C1F1B7DC23900435D9E /* TaskEntryPropVC.swift in Sources */,
+				CB7E0C1C1B7DC1FC00435D9E /* TaskEntryListVC.swift in Sources */,
+				CB7E0C2B1B7DC29600435D9E /* TaskTypeSelectVC.swift in Sources */,
+				CBB0C50F1B66D3B300EC8A1E /* Utilities.swift in Sources */,
+				CB7E0C291B7DC29600435D9E /* TaskSelectVC.swift in Sources */,
+				CB7E0C251B7DC29600435D9E /* TaskListVC.swift in Sources */,
 				CB7E74341B490974001E985B /* ProgrammaticPropertyTableTests.swift in Sources */,
+				CB7E0C271B7DC29600435D9E /* TaskPropVC.swift in Sources */,
+				CB7238CA1B61FC0600F6A6BD /* Model.swift in Sources */,
+				CB584E1F1B7B207D00071262 /* SessionProp.swift in Sources */,
+				CB584E1D1B7B207D00071262 /* SessionListVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

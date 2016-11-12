@@ -1,14 +1,22 @@
 //
-//  TaskItemVC.swift
-//  TestStaticDynamicTable
+//  TaskPropVC.swift
+//  ProgrammaticPropertyTable
 //
 //  Created by Per Ekskog on 2015-07-06.
 //  Copyright (c) 2015 Per Ekskog. All rights reserved.
 //
 
+/*
+Todo:
+
+*/
+
 import UIKit
 
-class TaskItemVC: UIViewController, UITableViewDataSource, UITextFieldDelegate {
+class TaskPropVC: 
+        UIViewController, 
+        UITableViewDataSource, 
+        UITextFieldDelegate {
     
     var nameOfTask: String?
     var descriptionOfTask: String?
@@ -24,7 +32,7 @@ class TaskItemVC: UIViewController, UITableViewDataSource, UITextFieldDelegate {
         let height = self.view.frame.height
         let width = self.view.frame.width
         
-        table.frame = CGRectMake(5, 20, width-10, height-25)
+        table.frame = CGRectMake(5, 0, width-10, height-25)
         table.dataSource = self
         table.rowHeight = 30
         self.view.addSubview(table)
