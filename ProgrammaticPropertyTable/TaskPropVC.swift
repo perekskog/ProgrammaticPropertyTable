@@ -32,7 +32,7 @@ class TaskPropVC:
         let height = self.view.frame.height
         let width = self.view.frame.width
         
-        table.frame = CGRectMake(5, 0, width-10, height-25)
+        table.frame = CGRect(x: 5, y: 0, width: width-10, height: height-25)
         table.dataSource = self
         table.rowHeight = 30
         self.view.addSubview(table)
@@ -48,25 +48,25 @@ class TaskPropVC:
     
     // UITableViewDateSource
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let width = tableView.frame.width
         let cell = UITableViewCell()
         
         switch indexPath.row {
         case 0:
-            textfieldName.frame = CGRectMake(0, 0, width, 30)
+            textfieldName.frame = CGRect(x: 0, y: 0, width: width, height: 30)
             textfieldName.placeholder = "Name of task"
             cell.contentView.addSubview(textfieldName)
         case 1:
-            textfieldDescription.frame = CGRectMake(0, 0, width, 30)
+            textfieldDescription.frame = CGRect(x: 0, y: 0, width: width, height: 30)
             textfieldDescription.placeholder = "Description of task"
             cell.contentView.addSubview(textfieldDescription)
         default:
@@ -78,14 +78,14 @@ class TaskPropVC:
     
     // UITextFieldDelegate
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         switch textField {
         case textfieldName:
             self.nameOfTask = textField.text
         case textfieldDescription:
             self.descriptionOfTask = textField.text
         default:
-            let x = 1
+            _ = 1
         }
     }
     

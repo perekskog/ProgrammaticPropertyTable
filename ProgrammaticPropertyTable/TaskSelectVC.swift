@@ -33,16 +33,16 @@ class TaskSelectVC: UIViewController, UITableViewDataSource, UITableViewDelegate
 
         self.title = "Select Task"
         
-        table.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: cellReuseId)
+        table.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: cellReuseId)
         table.dataSource = self
         table.delegate = self
         table.rowHeight = 30
         self.view.addSubview(table)
     }
 
-    override func viewWillAppear(animated: Bool) {
-        if let indexPath = table.indexPathForSelectedRow() {
-            table.deselectRowAtIndexPath(indexPath, animated: true)
+    override func viewWillAppear(_ animated: Bool) {
+        if let indexPath = table.indexPathForSelectedRow {
+            table.deselectRow(at: indexPath, animated: true)
         }
     }
 
@@ -50,7 +50,7 @@ class TaskSelectVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         let width = self.view.frame.size.width
         let height = self.view.frame.size.height
         
-        table.frame = CGRectMake(5, 0, width-10, height-25)        
+        table.frame = CGRect(x: 5, y: 0, width: width-10, height: height-25)        
     }
 
 
@@ -61,20 +61,15 @@ class TaskSelectVC: UIViewController, UITableViewDataSource, UITableViewDelegate
     
     // UITableViewDelegate
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         taskIndexSelected = indexPath.row
-        performSegueWithIdentifier("DoneSelectTask", sender: self)
+        performSegue(withIdentifier: "DoneSelectTask", sender: self)
     }
     
     // UITableViewDataSource
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: UITableViewCell!
-        if let c = tableView.dequeueReusableCellWithIdentifier(cellReuseId, forIndexPath: indexPath) as? UITableViewCell {
-            cell = c
-        } else {
-            cell = UITableViewCell(style: .Default, reuseIdentifier: cellReuseId)
-        }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseId, for: indexPath)
 
         if let t = tasks?[indexPath.row] {
             cell.textLabel?.text = t.name
@@ -83,11 +78,11 @@ class TaskSelectVC: UIViewController, UITableViewDataSource, UITableViewDelegate
         return cell
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let t = tasks {
             return t.count
         } else {

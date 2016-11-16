@@ -13,9 +13,9 @@ Todo:
 
 import Foundation
 
-func getStringNoDate(date: NSDate) -> String {
-    let formatter = NSDateFormatter();
-    formatter.dateFormat = NSDateFormatter.dateFormatFromTemplate("hhmmss", options: 0, locale: NSLocale.currentLocale())
-    let timeString = formatter.stringFromDate(date)
+func getStringNoDate(_ date: Date) -> String {
+    let formatter = DateFormatter();
+    formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "hhmmss", options: 0, locale: Locale.current)
+    let timeString = formatter.string(from: date)
     return timeString
 }

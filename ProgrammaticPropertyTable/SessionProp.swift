@@ -45,7 +45,7 @@ class SessionPropVC:
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.edgesForExtendedLayout = .None
+        self.edgesForExtendedLayout = UIRectEdge()
 
         if let s = segue {
             switch s {
@@ -58,11 +58,11 @@ class SessionPropVC:
             }
         }
         
-        self.table = UITableView(frame: self.view.frame, style: .Grouped)
+        self.table = UITableView(frame: self.view.frame, style: .grouped)
 
-        let buttonCancel = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: "cancel:")
+        let buttonCancel = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(SessionPropVC.cancel(_:)))
         self.navigationItem.leftBarButtonItem = buttonCancel
-        let buttonSave = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.Plain, target: self, action: "save:")
+        let buttonSave = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.plain, target: self, action: #selector(SessionPropVC.save(_:)))
         self.navigationItem.rightBarButtonItem = buttonSave
 
         table.dataSource = self
@@ -77,11 +77,11 @@ class SessionPropVC:
         }
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let indexPath = table.indexPathForSelectedRow() {
-            table.deselectRowAtIndexPath(indexPath, animated: true)
+        if let indexPath = table.indexPathForSelectedRow {
+            table.deselectRow(at: indexPath, animated: true)
         }
         
     }
@@ -91,16 +91,16 @@ class SessionPropVC:
         let width = self.view.frame.size.width
         let height = self.view.frame.size.height
         
-        table.frame = CGRectMake(0, 0, width, height)
+        table.frame = CGRect(x: 0, y: 0, width: width, height: height)
 
-        textSessionName.frame = CGRectMake(10, 0, width-20, 30)
+        textSessionName.frame = CGRect(x: 10, y: 0, width: width-20, height: 30)
         
     }
 
     override func viewDidLayoutSubviews() {
 
-        table.separatorInset = UIEdgeInsetsZero
-        table.layoutMargins = UIEdgeInsetsZero
+        table.separatorInset = UIEdgeInsets.zero
+        table.layoutMargins = UIEdgeInsets.zero
     }
 
     
@@ -113,40 +113,40 @@ class SessionPropVC:
 
     // GUI actions
 
-    func cancel(sender: UIButton) {
-        performSegueWithIdentifier("CancelSessionProp", sender: self)
+    func cancel(_ sender: UIButton) {
+        performSegue(withIdentifier: "CancelSessionProp", sender: self)
     }
     
-    func save(sender: UIButton) {
-        if let s = textSessionName.text {
-            performSegueWithIdentifier("SaveSessionProp", sender: self)
+    func save(_ sender: UIButton) {
+        if textSessionName.text != nil {
+            performSegue(withIdentifier: "SaveSessionProp", sender: self)
         }
     }
 
     //UITextFieldDelegate
 
-    func textFieldDidEditing(textfield: UITextField) {
+    @nonobjc func textFieldDidEditing(_ textfield: UITextField) {
         switch textfield {
         case textSessionName:
-            self.sessionResult = Session(name: textfield.text, taskEntries: [])
+            self.sessionResult = Session(name: textfield.text!, taskEntries: [])
         default:
-            let x = 1
+            _ = 1
         }
     }
     
     // UITableViewDelegate
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 30
     }
     
     // UITableViewDataSource
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
             return 1
@@ -155,7 +155,7 @@ class SessionPropVC:
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var cell: UITableViewCell
         
@@ -179,7 +179,7 @@ class SessionPropVC:
 
     // Segue handling
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CancelSessionProp" {
             // Do nothing
         }

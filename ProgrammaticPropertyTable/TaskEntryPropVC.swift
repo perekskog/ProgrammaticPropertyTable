@@ -37,9 +37,9 @@ class TaskEntryPropVC:
     // Table and table cells
     var table: UITableView!
     
-    let cellStartTime = UITableViewCell(style: .Value1, reuseIdentifier: "TaskEntry-type1")
-    let cellStopTime = UITableViewCell(style: .Value1, reuseIdentifier: "TaskEntry-type2")
-    let cellTask = UITableViewCell(style: .Value1, reuseIdentifier: "TaskEntry-type3")
+    let cellStartTime = UITableViewCell(style: .value1, reuseIdentifier: "TaskEntry-type1")
+    let cellStopTime = UITableViewCell(style: .value1, reuseIdentifier: "TaskEntry-type2")
+    let cellTask = UITableViewCell(style: .value1, reuseIdentifier: "TaskEntry-type3")
 
     // Hold TaskEntry attributes while editing
     let datePickerStart = UIDatePicker()
@@ -52,7 +52,7 @@ class TaskEntryPropVC:
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.edgesForExtendedLayout = .None
+        self.edgesForExtendedLayout = UIRectEdge()
 
         if let s = segue {
             switch s {
@@ -65,11 +65,11 @@ class TaskEntryPropVC:
             }
         }
         
-        self.table = UITableView(frame: self.view.frame, style: .Grouped)
+        self.table = UITableView(frame: self.view.frame, style: .grouped)
 
-        let buttonCancel = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: "cancel:")
+        let buttonCancel = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(TaskEntryPropVC.cancel(_:)))
         self.navigationItem.leftBarButtonItem = buttonCancel
-        let buttonSave = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.Plain, target: self, action: "save:")
+        let buttonSave = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.plain, target: self, action: #selector(TaskEntryPropVC.save(_:)))
         self.navigationItem.rightBarButtonItem = buttonSave
 
         
@@ -77,28 +77,28 @@ class TaskEntryPropVC:
         table.delegate = self
         self.view.addSubview(table)
         
-        let now = NSDate()
+        let now = Date()
         datePickerStart.date = now
         datePickerStop.date = now
-        datePickerStart.addTarget(self, action: "datePickerChanged:", forControlEvents: UIControlEvents.ValueChanged)
-        datePickerStop.addTarget(self, action: "datePickerChanged:", forControlEvents: UIControlEvents.ValueChanged)
+        datePickerStart.addTarget(self, action: #selector(TaskEntryPropVC.datePickerChanged(_:)), for: UIControlEvents.valueChanged)
+        datePickerStop.addTarget(self, action: #selector(TaskEntryPropVC.datePickerChanged(_:)), for: UIControlEvents.valueChanged)
 
         textTaskEntryDescription.placeholder = "Description"
         textTaskEntryDescription.delegate = self
 
         if let t = taskEntryTemplate {
-            datePickerStart.date = t.starttime
-            datePickerStop.date = t.stoptime
+            datePickerStart.date = t.starttime as Date
+            datePickerStop.date = t.stoptime as Date
             taskSelected = t.task
             textTaskEntryDescription.text = t.description
         }
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let indexPath = table.indexPathForSelectedRow() {
-            table.deselectRowAtIndexPath(indexPath, animated: true)
+        if let indexPath = table.indexPathForSelectedRow {
+            table.deselectRow(at: indexPath, animated: true)
         }
         
     }
@@ -108,9 +108,9 @@ class TaskEntryPropVC:
         let width = self.view.frame.size.width
         let height = self.view.frame.size.height
         
-        table.frame = CGRectMake(0, 0, width, height)
+        table.frame = CGRect(x: 0, y: 0, width: width, height: height)
 
-        textTaskEntryDescription.frame = CGRectMake(10, 0, width-20, 30)
+        textTaskEntryDescription.frame = CGRect(x: 10, y: 0, width: width-20, height: 30)
 
     }
     
@@ -123,27 +123,27 @@ class TaskEntryPropVC:
 
     // GUI actions
 
-    func cancel(sender: UIButton) {
-        performSegueWithIdentifier("CancelTaskEntry", sender: self)
+    func cancel(_ sender: UIButton) {
+        performSegue(withIdentifier: "CancelTaskEntry", sender: self)
     }
     
-    func save(sender: UIButton) {
-        if let t = taskSelected {
+    func save(_ sender: UIButton) {
+        if taskSelected != nil {
             // Must have selected a task to save the task entry
-            performSegueWithIdentifier("SaveTaskEntry", sender: self)            
+            performSegue(withIdentifier: "SaveTaskEntry", sender: self)            
         }
     }
     
-    func datePickerChanged(sender: UIDatePicker) {
+    func datePickerChanged(_ sender: UIDatePicker) {
         if sender == datePickerStart {
-            if datePickerStart.date.compare(datePickerStop.date) == .OrderedDescending {
+            if datePickerStart.date.compare(datePickerStop.date) == .orderedDescending {
                 datePickerStop.date = datePickerStart.date
                 cellStopTime.detailTextLabel?.text = getString(datePickerStop.date)
             }
             cellStartTime.detailTextLabel?.text = getString(datePickerStart.date)
         }
         if sender == datePickerStop {
-            if datePickerStop.date.compare(datePickerStart.date) == .OrderedAscending {
+            if datePickerStop.date.compare(datePickerStart.date) == .orderedAscending {
                 datePickerStart.date = datePickerStop.date
                 cellStartTime.detailTextLabel?.text = getString(datePickerStart.date)
             }
@@ -153,13 +153,13 @@ class TaskEntryPropVC:
 
     // UITextFieldDelegate
 
-    func textFieldDidEditing(textfield: UITextField) {
+    @nonobjc func textFieldDidEditing(_ textfield: UITextField) {
         // Nothing to e done?
     }
     
     // UITableViewDelegate
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var height: CGFloat
         switch indexPath.section {
         case 0:
@@ -185,7 +185,7 @@ class TaskEntryPropVC:
         return height
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         editStart = false
         editStop = false
         
@@ -199,15 +199,15 @@ class TaskEntryPropVC:
             case 2:
                 editStop = true
             default:
-                let x = 1
+                _ = 1
             }
         case 1:
             switch indexPath.row {
             default: 
-                performSegueWithIdentifier("SelectTask", sender: self)
+                performSegue(withIdentifier: "SelectTask", sender: self)
             }
         default:
-            let x = 1
+            _ = 1
         }
         
         self.table.endUpdates()
@@ -215,11 +215,11 @@ class TaskEntryPropVC:
     
     // UITableViewDataSource
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
             return 4
@@ -232,7 +232,7 @@ class TaskEntryPropVC:
         }
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         var cell: UITableViewCell
         
@@ -253,7 +253,6 @@ class TaskEntryPropVC:
                 cell = cellStopTime
             case 3:
                 cell = UITableViewCell()
-                let datepicker = UIDatePicker()
                 cell.contentView.addSubview(datePickerStop)
                 cell.clipsToBounds = true
             default:
@@ -267,7 +266,7 @@ class TaskEntryPropVC:
                 if let t = taskSelected {
                     cellTask.detailTextLabel?.text = t.name                    
                 }
-                cellTask.accessoryType = .DisclosureIndicator
+                cellTask.accessoryType = .disclosureIndicator
                 cell = cellTask
             default:
                 cell = UITableViewCell()
@@ -292,9 +291,9 @@ class TaskEntryPropVC:
     
     // Segue handling
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SelectTask" {
-            if let vc = segue.destinationViewController as? TaskSelectVC {
+            if let vc = segue.destination as? TaskSelectVC {
                 vc.tasks = tasks
             }
         }
@@ -307,15 +306,15 @@ class TaskEntryPropVC:
                 starttime: datePickerStart.date, 
                 stoptime: datePickerStop.date,
                 task: taskSelected!,
-                description: textTaskEntryDescription.text
+                description: textTaskEntryDescription.text!
             )
         }
     }
     
-    @IBAction func exitSelectTask(unwindSegue: UIStoryboardSegue ) {
+    @IBAction func exitSelectTask(_ unwindSegue: UIStoryboardSegue ) {
         if unwindSegue.identifier == "DoneSelectTask" {
-            if let vc = unwindSegue.sourceViewController as? TaskSelectVC,
-                i = vc.taskIndexSelected {
+            if let vc = unwindSegue.source as? TaskSelectVC,
+                let i = vc.taskIndexSelected {
                 taskSelected = tasks[i]
                 cellTask.detailTextLabel?.text = taskSelected!.name
             }
@@ -324,10 +323,10 @@ class TaskEntryPropVC:
 
     // Utilities
     
-    func getString(date: NSDate) -> String {
-        let formatter = NSDateFormatter();
-        formatter.dateFormat = NSDateFormatter.dateFormatFromTemplate("yyyyMMddhhmmss", options: 0, locale: NSLocale.currentLocale())
-        let timeString = formatter.stringFromDate(date)
+    func getString(_ date: Date) -> String {
+        let formatter = DateFormatter();
+        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yyyyMMddhhmmss", options: 0, locale: Locale.current)
+        let timeString = formatter.string(from: date)
         return timeString
     }
     

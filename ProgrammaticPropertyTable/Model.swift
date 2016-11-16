@@ -36,7 +36,7 @@ class Task {
 		return allTasks
 	}
 
-	class func save(tasks: [Task]) {
+	class func save(_ tasks: [Task]) {
 		allTasks = tasks
 	}
 }
@@ -45,12 +45,12 @@ class Task {
 // TaskEntry
 
 class TaskEntry {
-	var starttime: NSDate
-	var stoptime: NSDate
+	var starttime: Date
+	var stoptime: Date
 	var task: Task
 	var description: String
 
-    init(starttime: NSDate, stoptime: NSDate, task: Task, description: String) {
+    init(starttime: Date, stoptime: Date, task: Task, description: String) {
         self.starttime = starttime
         self.stoptime = stoptime
         self.task = task
@@ -79,7 +79,7 @@ class Session {
 		return allSessions
 	}
 
-	class func save(sessions: [Session]) {
+	class func save(_ sessions: [Session]) {
 		allSessions = sessions
 	}
 }

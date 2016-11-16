@@ -26,7 +26,6 @@
 		CB7E0C2A1B7DC29600435D9E /* TaskTypeSelectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E0C231B7DC29600435D9E /* TaskTypeSelectVC.swift */; };
 		CB7E0C2B1B7DC29600435D9E /* TaskTypeSelectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E0C231B7DC29600435D9E /* TaskTypeSelectVC.swift */; };
 		CB7E741B1B490973001E985B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7E741A1B490973001E985B /* AppDelegate.swift */; };
-		CB7E741E1B490973001E985B /* ProgrammaticPropertyTable.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB7E741C1B490973001E985B /* ProgrammaticPropertyTable.xcdatamodeld */; };
 		CB7E74231B490973001E985B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB7E74211B490973001E985B /* Main.storyboard */; };
 		CB7E74251B490973001E985B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB7E74241B490973001E985B /* Images.xcassets */; };
 		CB7E74281B490973001E985B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB7E74261B490973001E985B /* LaunchScreen.xib */; };
@@ -58,7 +57,6 @@
 		CB7E74151B490973001E985B /* ProgrammaticPropertyTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProgrammaticPropertyTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB7E74191B490973001E985B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CB7E741A1B490973001E985B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CB7E741D1B490973001E985B /* ProgrammaticPropertyTable.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ProgrammaticPropertyTable.xcdatamodel; sourceTree = "<group>"; };
 		CB7E74221B490973001E985B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CB7E74241B490973001E985B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		CB7E74271B490973001E985B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -121,7 +119,6 @@
 				CBB0C50D1B66D3B300EC8A1E /* Utilities.swift */,
 				CB7E74241B490973001E985B /* Images.xcassets */,
 				CB7E74261B490973001E985B /* LaunchScreen.xib */,
-				CB7E741C1B490973001E985B /* ProgrammaticPropertyTable.xcdatamodeld */,
 				CB7E74181B490973001E985B /* Supporting Files */,
 			);
 			path = ProgrammaticPropertyTable;
@@ -196,14 +193,18 @@
 		CB7E740D1B490973001E985B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "Per Ekskog";
 				TargetAttributes = {
 					CB7E74141B490973001E985B = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = EM6H3CE23M;
+						LastSwiftMigration = 0810;
 					};
 					CB7E742C1B490974001E985B = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = EM6H3CE23M;
+						LastSwiftMigration = 0810;
 						TestTargetID = CB7E74141B490973001E985B;
 					};
 				};
@@ -257,7 +258,6 @@
 				CB7E0C1E1B7DC23900435D9E /* TaskEntryPropVC.swift in Sources */,
 				CB7E0C2A1B7DC29600435D9E /* TaskTypeSelectVC.swift in Sources */,
 				CB7E0C281B7DC29600435D9E /* TaskSelectVC.swift in Sources */,
-				CB7E741E1B490973001E985B /* ProgrammaticPropertyTable.xcdatamodeld in Sources */,
 				CB584E1E1B7B207D00071262 /* SessionProp.swift in Sources */,
 				CB7E0C1B1B7DC1FC00435D9E /* TaskEntryListVC.swift in Sources */,
 				CB7E741B1B490973001E985B /* AppDelegate.swift in Sources */,
@@ -328,14 +328,17 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -351,7 +354,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -372,8 +375,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -389,9 +394,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -400,9 +406,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = EM6H3CE23M;
 				INFOPLIST_FILE = ProgrammaticPropertyTable/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "se.perekskog.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = ProgrammaticPropertyTable;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -410,9 +419,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = EM6H3CE23M;
 				INFOPLIST_FILE = ProgrammaticPropertyTable/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "se.perekskog.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = ProgrammaticPropertyTable;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -420,6 +432,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = EM6H3CE23M;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -430,7 +443,9 @@
 				);
 				INFOPLIST_FILE = ProgrammaticPropertyTableTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "se.perekskog.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = ProgrammaticPropertyTableTests;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ProgrammaticPropertyTable.app/ProgrammaticPropertyTable";
 			};
 			name = Debug;
@@ -439,13 +454,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = EM6H3CE23M;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = ProgrammaticPropertyTableTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "se.perekskog.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = ProgrammaticPropertyTableTests;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ProgrammaticPropertyTable.app/ProgrammaticPropertyTable";
 			};
 			name = Release;
@@ -481,19 +499,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		CB7E741C1B490973001E985B /* ProgrammaticPropertyTable.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				CB7E741D1B490973001E985B /* ProgrammaticPropertyTable.xcdatamodel */,
-			);
-			currentVersion = CB7E741D1B490973001E985B /* ProgrammaticPropertyTable.xcdatamodel */;
-			path = ProgrammaticPropertyTable.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = CB7E740D1B490973001E985B /* Project object */;
 }

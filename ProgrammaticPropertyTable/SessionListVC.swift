@@ -19,7 +19,7 @@ whose view is not in the window hierarchy!
 import UIKit
 
 protocol SessionListDelegate {
-    func save(taskEntries: [TaskEntry])
+    func save(_ taskEntries: [TaskEntry])
 }
 
 class SessionLongPressRecognizer:
@@ -29,7 +29,7 @@ class SessionLongPressRecognizer:
 
     init(sessionIndex: Int, target: SessionListVC) {
         self.sessionIndex = sessionIndex
-        super.init(target: target, action: "handleEditSession:")
+        super.init(target: target, action: #selector(SessionListVC.handleEditSession(_:)))
     }
 }
 
@@ -56,25 +56,25 @@ class SessionListVC:
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.edgesForExtendedLayout = .None
+        self.edgesForExtendedLayout = UIRectEdge()
         self.title = "Session list"
 
-        table.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: cellReuseId)
+        table.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: cellReuseId)
         table.dataSource = self
         table.delegate = self
         table.setEditing(isEditingMode, animated: true)
         self.view.addSubview(table)      
 
         // Navigation bar
-        addButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addItem:")
-        editButton = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.Plain, target: self, action: "editItems:")
+        addButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(SessionListVC.addItem(_:)))
+        editButton = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.plain, target: self, action: #selector(SessionListVC.editItems(_:)))
 
         self.navigationItem.rightBarButtonItems = [addButton, editButton]
     }
 
-    override func viewWillAppear(animated: Bool) {
-        if let indexPath = table.indexPathForSelectedRow() {
-            table.deselectRowAtIndexPath(indexPath, animated: true)
+    override func viewWillAppear(_ animated: Bool) {
+        if let indexPath = table.indexPathForSelectedRow {
+            table.deselectRow(at: indexPath, animated: true)
         }
     }
 
@@ -82,11 +82,7 @@ class SessionListVC:
         let width = self.view.frame.size.width
         let height = self.view.frame.size.height
         
-        var lastview: UIView
-
-        table.frame = CGRectMake(5, 0, width-10, height)
-        lastview = table
-        
+        table.frame = CGRect(x: 5, y: 0, width: width-10, height: height)        
     }
     
     
@@ -97,20 +93,20 @@ class SessionListVC:
     
     // GUI actions
     
-    func editItems(sender: UIButton) {
+    func editItems(_ sender: UIButton) {
         isEditingMode = !isEditingMode
         if isEditingMode {
             editButton.title = "Done"
-            editButton.style = .Done
+            editButton.style = .done
         } else {
             editButton.title = "Edit"
-            editButton.style = .Plain
+            editButton.style = .plain
         }
         table.setEditing(isEditingMode, animated: true)
     }
     
-    func addItem(sender: UIButton) {
-        performSegueWithIdentifier("AddSession", sender: self)
+    func addItem(_ sender: UIButton) {
+        performSegue(withIdentifier: "AddSession", sender: self)
         selectedSessionIndex = -1
     }
 
@@ -118,25 +114,20 @@ class SessionListVC:
 //        performSegueWithIdentifier("EditSession", sender: self)
 //    }
     
-    func handleEditSession(sender: SessionLongPressRecognizer) {
+    func handleEditSession(_ sender: SessionLongPressRecognizer) {
         selectedSessionIndex = sender.sessionIndex
-        performSegueWithIdentifier("EditSession", sender: self)
+        performSegue(withIdentifier: "EditSession", sender: self)
     }
     // UITableViewDelegate
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedSessionIndex = indexPath.row
-        performSegueWithIdentifier("NavigateToTaskEntry", sender: self)
+        performSegue(withIdentifier: "NavigateToTaskEntry", sender: self)
     }
         // UITableViewDataSource
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: UITableViewCell!
-        if let c = tableView.dequeueReusableCellWithIdentifier(cellReuseId, forIndexPath: indexPath) as? UITableViewCell {
-            cell = c
-        } else {
-            cell = UITableViewCell(style: .Default, reuseIdentifier: cellReuseId)
-        }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseId, for: indexPath)
         
         let s = sessions[indexPath.row]
         cell.textLabel?.text = "\(s.name)"
@@ -147,24 +138,24 @@ class SessionListVC:
         return cell
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sessions.count
     }
     
-    func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let item = sessions[sourceIndexPath.row]
-        sessions.removeAtIndex(sourceIndexPath.row)
-        sessions.insert(item, atIndex: destinationIndexPath.row)
+        sessions.remove(at: sourceIndexPath.row)
+        sessions.insert(item, at: destinationIndexPath.row)
         dumpItems()
     }
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.Delete {
-            sessions.removeAtIndex(indexPath.row)
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            sessions.remove(at: indexPath.row)
         }
         dumpItems()
     }
@@ -172,35 +163,35 @@ class SessionListVC:
     // Segue handling
     
     override
-    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "NavigateToTaskEntry" {
-            if let vc = segue.destinationViewController as? TaskEntryListVC {
+            if let vc = segue.destination as? TaskEntryListVC {
                 vc.taskEntries = sessions[selectedSessionIndex].taskEntries
                 vc.sessionListDelegate = self
             }
         }
         if segue.identifier == "AddSession" {
-            if let nvc = segue.destinationViewController as? UINavigationController,
-                vc = nvc.topViewController as? SessionPropVC {
+            if let nvc = segue.destination as? UINavigationController,
+                let vc = nvc.topViewController as? SessionPropVC {
                 vc.segue = "AddSession"
             }
         }
         if segue.identifier == "EditSession" {
-            if let nvc = segue.destinationViewController as? UINavigationController,
-                vc = nvc.topViewController as? SessionPropVC {
+            if let nvc = segue.destination as? UINavigationController,
+                let vc = nvc.topViewController as? SessionPropVC {
                 vc.sessionTemplate = sessions[selectedSessionIndex]
                 vc.segue = "EditSession"
             }
         }
     }
 
-    @IBAction func exitSessionProp(unwindSegue: UIStoryboardSegue ) {
+    @IBAction func exitSessionProp(_ unwindSegue: UIStoryboardSegue ) {
         if unwindSegue.identifier == "CancelSessionProp" {
             // Do nothing
         }
         if unwindSegue.identifier == "SaveSessionProp" {
-            if let vc = unwindSegue.sourceViewController as? SessionPropVC,
-                s = vc.sessionResult {
+            if let vc = unwindSegue.source as? SessionPropVC,
+                let s = vc.sessionResult {
                 if selectedSessionIndex == -1 {
                     // New TaskEntry added
                     sessions.append(s)
@@ -214,16 +205,16 @@ class SessionListVC:
     }
 
     // SessionListDeegate
-    func save(taskEntries: [TaskEntry]) {
+    func save(_ taskEntries: [TaskEntry]) {
         sessions[selectedSessionIndex].taskEntries = taskEntries
     }
     
     // Utilities
     
     func dumpItems() {
-        println("---")
+        print("---")
         for item in sessions {
-            println(item)
+            print(item)
         }
     }
     

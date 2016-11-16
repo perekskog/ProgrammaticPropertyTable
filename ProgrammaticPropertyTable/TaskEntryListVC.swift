@@ -35,26 +35,26 @@ class TaskEntryListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.edgesForExtendedLayout = .None
+        self.edgesForExtendedLayout = UIRectEdge()
         self.title = "TaskEntry list"
 
-        table.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: cellReuseId)
+        table.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: cellReuseId)
         table.dataSource = self
         table.delegate = self
         table.setEditing(isEditingMode, animated: true)
         self.view.addSubview(table)      
 
         // Navigation bar
-        addButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addItem:")
+        addButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(TaskEntryListVC.addItem(_:)))
 //        editButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Edit, target: self, action: "editItems:")
-        editButton = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.Plain, target: self, action: "editItems:")
+        editButton = UIBarButtonItem(title: "Edit", style: UIBarButtonItemStyle.plain, target: self, action: #selector(TaskEntryListVC.editItems(_:)))
 
         self.navigationItem.rightBarButtonItems = [addButton, editButton]
     }
 
-    override func viewWillAppear(animated: Bool) {
-        if let indexPath = table.indexPathForSelectedRow() {
-            table.deselectRowAtIndexPath(indexPath, animated: true)
+    override func viewWillAppear(_ animated: Bool) {
+        if let indexPath = table.indexPathForSelectedRow {
+            table.deselectRow(at: indexPath, animated: true)
         }
     }
 
@@ -62,11 +62,7 @@ class TaskEntryListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         let width = self.view.frame.size.width
         let height = self.view.frame.size.height
         
-        var lastview: UIView
-
-        table.frame = CGRectMake(5, 0, width-10, height)
-        lastview = table
-        
+        table.frame = CGRect(x: 5, y: 0, width: width-10, height: height)        
     }
     
     
@@ -77,39 +73,34 @@ class TaskEntryListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     // GUI actions
     
-    func editItems(sender: UIButton) {
+    func editItems(_ sender: UIButton) {
         isEditingMode = !isEditingMode
         if isEditingMode {
             editButton.title = "Done"
-            editButton.style = .Done
+            editButton.style = .done
         } else {
             editButton.title = "Edit"
-            editButton.style = .Plain
+            editButton.style = .plain
         }
         table.setEditing(isEditingMode, animated: true)
     }
     
-    func addItem(sender: UIButton) {
-        performSegueWithIdentifier("AddTaskEntry", sender: self)
+    func addItem(_ sender: UIButton) {
+        performSegue(withIdentifier: "AddTaskEntry", sender: self)
         selectedTaskEntryIndex = -1
     }
     
     // UITableViewDelegate
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedTaskEntryIndex = indexPath.row
-        performSegueWithIdentifier("EditTaskEntry", sender: self)
+        performSegue(withIdentifier: "EditTaskEntry", sender: self)
     }
     
     // UITableViewDataSource
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: UITableViewCell!
-        if let c = tableView.dequeueReusableCellWithIdentifier(cellReuseId, forIndexPath: indexPath) as? UITableViewCell {
-            cell = c
-        } else {
-            cell = UITableViewCell(style: .Default, reuseIdentifier: cellReuseId)
-        }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseId, for: indexPath)
         
         let t = taskEntries[indexPath.row]
         cell.textLabel?.text = "\(t.task.name): \(getStringNoDate(t.starttime))-\(getStringNoDate(t.stoptime)))"
@@ -118,24 +109,24 @@ class TaskEntryListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         return cell
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return taskEntries.count
     }
     
-    func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let item = taskEntries[sourceIndexPath.row]
-        taskEntries.removeAtIndex(sourceIndexPath.row)
-        taskEntries.insert(item, atIndex: destinationIndexPath.row)
+        taskEntries.remove(at: sourceIndexPath.row)
+        taskEntries.insert(item, at: destinationIndexPath.row)
         dumpItems()
     }
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.Delete {
-            taskEntries.removeAtIndex(indexPath.row)
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            taskEntries.remove(at: indexPath.row)
         }
         dumpItems()
     }
@@ -143,8 +134,8 @@ class TaskEntryListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     // Segue handling
     
     override
-    func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let nvc = segue.destinationViewController as? UINavigationController {
+    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let nvc = segue.destination as? UINavigationController {
             if segue.identifier == "AddTaskEntry" {
                 if let vc = nvc.topViewController as? TaskEntryPropVC {
                     vc.segue = "AddTaskEntry"
@@ -159,13 +150,13 @@ class TaskEntryListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
         }
     }
 
-    @IBAction func exitTaskEntry(unwindSegue: UIStoryboardSegue ) {
+    @IBAction func exitTaskEntry(_ unwindSegue: UIStoryboardSegue ) {
         if unwindSegue.identifier == "CancelTaskEntry" {
             // Do nothing
         }
         if unwindSegue.identifier == "SaveTaskEntry" {
-            if let vc = unwindSegue.sourceViewController as? TaskEntryPropVC,
-                t = vc.taskEntryResult {
+            if let vc = unwindSegue.source as? TaskEntryPropVC,
+                let t = vc.taskEntryResult {
                 if selectedTaskEntryIndex == -1 {
                     // New TaskEntry added
                     taskEntries.append(t)
@@ -182,9 +173,9 @@ class TaskEntryListVC: UIViewController, UITableViewDataSource, UITableViewDeleg
     // Utilities
     
     func dumpItems() {
-        println("---")
+        print("---")
         for item in taskEntries {
-            println(item)
+            print(item)
         }
     }
     
